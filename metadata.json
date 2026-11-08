@@ -1,0 +1,10 @@
+{
+  "name": "Mirror AI",
+  "description": "A behavioral profiling application that analyzes your real-world signals to generate a psychologically grounded personality profile.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": []
+}

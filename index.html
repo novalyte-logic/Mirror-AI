@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050505">
+    <title>Mirror AI - Quantum Witness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --safe-bottom: env(safe-area-inset-bottom, 16px);
+            --safe-top: env(safe-area-inset-top, 16px);
+            --neon-purple: #a78bfa;
+            --neon-glow: rgba(167, 139, 250, 0.4);
+            --app-bg: #000;
+            --app-text: #fff;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+        }
+        *::-webkit-scrollbar {
+            display: none;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        input, textarea {
+            user-select: text;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--app-bg);
+            color: var(--app-text);
+            overscroll-behavior-y: none;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+        #root {
+            width: 100%;
+            height: 100%;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+        }
+        .glass-purple {
+            background: rgba(167, 139, 250, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 20px var(--neon-glow);
+        }
+        
+        .mirror-feed {
+            transform: scaleX(-1);
+            filter: contrast(1.1) brightness(1.1);
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 0.8; background: var(--neon-purple); }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+        .scanner-bar {
+            position: absolute;
+            width: 100%;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+            box-shadow: 0 0 15px var(--neon-purple);
+            animation: scan 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            z-index: 20;
+        }
+
+        @keyframes flash {
+            0% { filter: brightness(1) contrast(1); box-shadow: 0 0 0px transparent; }
+            50% { filter: brightness(2) contrast(1.5); box-shadow: 0 0 50px var(--neon-purple); }
+            100% { filter: brightness(1) contrast(1); box-shadow: 0 0 0px transparent; }
+        }
+        .flash-active {
+            animation: flash 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 5px var(--neon-glow);
+        }
+
+        .nav-bloom {
+            filter: drop-shadow(0 0 8px var(--neon-purple));
+        }
+
+        @keyframes drift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .soul-fragment {
+            background: linear-gradient(-45deg, #050505, #111, #000, #0a0a0a);
+            background-size: 400% 400%;
+            animation: drift 25s ease infinite;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .bg-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.05) 0%, transparent 70%);
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .pb-safe { padding-bottom: var(--safe-bottom); }
+        .pt-safe { padding-top: var(--safe-top); }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="dark-mode">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
